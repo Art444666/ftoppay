@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>F-TOP VIP-Platinum</title>
+  <style>
+    :root {
+      --bg-1: #08080a;
+      --bg-2: #101014;
+      --text: #e9e9ee;
+      --muted: #b7b7c2;
+      --accent-rgb: rgba(255, 255, 255, 0.15);
+      --inner-border: rgba(255, 255, 255, 0.2);
+      --transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg-1);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Анимированный живой RGB фон */
+    .bg-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      overflow: hidden;
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 150%; height: 150%;
+      top: -25%; left: -25%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(245, 3, 100, 0.6), transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(0, 149, 255, 0.5), transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 149, 0.4), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 200, 0, 0.4), transparent 40%);
+      filter: blur(100px);
+      animation: moveGlow 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes moveGlow {
+      0% { transform: rotate(0deg) scale(1); filter: hue-rotate(0deg) blur(100px); }
+      100% { transform: rotate(10deg) scale(1.1); filter: hue-rotate(360deg) blur(120px); }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 80px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid var(--inner-border);
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #000;
+      background: #fff;
+      transition: var(--transition);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: var(--bg-1);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .right {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    b { color: #fff; }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; margin: 40px 20px; }
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas">
+    <div class="bg-glow"></div>
+  </div>
+
+  <div class="container">
+    <section class="left">
+      <h1>Купить VIP-Platinum</h1>
+      <form method="POST" action="https://yoomoney.ru/quickpay/confirm.xml">
+        <input type="hidden" name="receiver" value="4100119454930518">
+        <input type="hidden" name="quickpay-form" value="donate">
+        <input type="hidden" name="targets" value="VIP-Platinum на F-TOP">
+        <input type="hidden" name="paymentType" value="AC">
+        <input type="hidden" name="sum" value="350">
+
+        <label>Ваш ник</label>
+        <input type="text" name="label" placeholder="Введите Steam ник" required>
+
+        <label>Сумма</label>
+        <input type="text" value="350 ₽" readonly>
+
+        <label>Комментарий</label>
+        <textarea name="comment" placeholder="Напишите коментарий нашей команде"></textarea>
+
+        <button type="submit">Купить сейчас</button>
+      </form>
+    </section>
+
+    <section class="right">
+      <h1>Описание привилегии</h1>
+      <p>
+        Вы покупаете привилегию <b>VIP-Platinum</b> на проекте <b>F-TOP</b> навсегда.<br><br>
+        • Уникальный префикс <b>!ваш ник</b><br>
+        • Доступ ко всем текущим VIP-функциям<br>
+        • Автоматическое получение новых платных возможностей после их релиза на сервере.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 F-TOP. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+  </footer>
+</body>
+</html>
